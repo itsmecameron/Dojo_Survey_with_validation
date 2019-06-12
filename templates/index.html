@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/style.css')}}">
+
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="container">
+        <form action='/process' method='post'>
+            <div class="form-group">
+                Your Name: 
+                
+            {% with messages = get_flashed_messages(category_filter=["name"]) %}     
+            {% if messages %}                            
+            {% for message in messages %}            
+            <p>{{message}}</p>                   
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+                
+            <input type='text' class="form-control" placeholder="Name" name='name'>
+
+            </div>
+            <p>Location:</p>
+            {% with messages = get_flashed_messages(category_filter=["locationflash"]) %}     
+            {% if messages %}                            
+            {% for message in messages %}            
+            <p>{{message}}</p>                   
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+
+            <div class="form-check" name="locationradio">
+                <input class="form-check-input" type="radio" id="exampleFormControlTextarea1" name="location"
+                    value="Emeryville">
+                <label class="form-check-label">
+                    Emeryville
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" id="exampleFormControlTextarea1" name="location"
+                    value="San Jose">
+                <label class="form-check-label">
+                    San Jose
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" id="exampleFormControlTextarea1" name="location"
+                    value="Los Angeles">
+                <label class="form-check-label">
+                    Los Angeles
+                </label>
+            </div>
+            <p>Favorite Language:</p>
+            {% with messages = get_flashed_messages(category_filter=["languageflash"]) %}     
+            {% if messages %}                           
+            {% for message in messages %}            
+            <p>{{message}}</p>                   
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="exampleFormControlTextarea1" name="language"
+                    value="Python">
+                <label class="form-check-label">
+                    Python
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="exampleFormControlTextarea1" name="language"
+                    value="JavaScript">
+                <label class="form-check-label">
+                    JavaScript
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="exampleFormControlTextarea1" name="language"
+                    value="Ruby">
+                <label class="form-check-label">
+                    Ruby
+                </label>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Comments
+                </label>
+                {% with messages = get_flashed_messages(category_filter=["comment"]) %}     
+                    {% if messages %}                   
+                    {% for message in messages %}            
+                    <p>{{message}}</p>                   
+                    {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+                <textarea class="form-control" name="comment" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+            <input type='submit' value='create user'>
+    </div>
+    </form>
+</body>
+
+</html>
